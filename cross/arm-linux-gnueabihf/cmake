@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Helper script for CLion to create toolchains
+
+set -e
+
+if [ "$1" == "--build" ]; then
+    exec cmake "$@"
+else
+    exec cmake -G Ninja -DCMAKE_TOOLCHAIN_FILE=/opt/cross/arm-linux-gnueabihf/toolchain.cmake "$@"
+fi
