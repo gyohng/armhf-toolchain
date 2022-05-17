@@ -51,11 +51,11 @@ extern int setjmp (jmp_buf __env) __THROWNL;
 /* Store the calling environment in ENV, also saving the
    signal mask if SAVEMASK is nonzero.  Return 0.
    This is the internal name for `sigsetjmp'.  */
-extern int __sigsetjmp (struct __jmp_buf_tag *__env, int __savemask) __THROWNL;
+extern int __sigsetjmp (struct __jmp_buf_tag __env[1], int __savemask) __THROWNL;
 
 /* Store the calling environment in ENV, not saving the signal mask.
    Return 0.  */
-extern int _setjmp (struct __jmp_buf_tag *__env) __THROWNL;
+extern int _setjmp (struct __jmp_buf_tag __env[1]) __THROWNL;
 
 /* Do not save the signal mask.  This is equivalent to the `_setjmp'
    BSD function.  */
@@ -64,14 +64,14 @@ extern int _setjmp (struct __jmp_buf_tag *__env) __THROWNL;
 
 /* Jump to the environment saved in ENV, making the
    `setjmp' call there return VAL, or 1 if VAL is 0.  */
-extern void longjmp (struct __jmp_buf_tag *__env, int __val)
+extern void longjmp (struct __jmp_buf_tag __env[1], int __val)
      __THROWNL __attribute__ ((__noreturn__));
 
 #if defined __USE_MISC || defined __USE_XOPEN
 /* Same.  Usually `_longjmp' is used with `_setjmp', which does not save
    the signal mask.  But it is how ENV was saved that determines whether
    `longjmp' restores the mask; `_longjmp' is just an alias.  */
-extern void _longjmp (struct __jmp_buf_tag *__env, int __val)
+extern void _longjmp (struct __jmp_buf_tag __env[1], int __val)
      __THROWNL __attribute__ ((__noreturn__));
 #endif
 
