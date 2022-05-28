@@ -19,7 +19,7 @@ import gdb
 import os
 import os.path
 
-pythondir = '/opt/cross/arm-linux-gnueabihf/share/gcc-11.2.0/python'
+pythondir = '/opt/cross/arm-linux-gnueabihf/share/gcc-11.3.0/python'
 libdir = '/opt/cross/arm-linux-gnueabihf/arm-linux-gnueabihf/lib'
 
 # This file might be loaded when there is no current objfile.  This
