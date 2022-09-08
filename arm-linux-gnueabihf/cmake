@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Helper script for CLion to create toolchains
+
+set -e
+
+CROSS_COMPILE_TOOLCHAIN_PREFIX=arm-linux-gnueabihf
+
+if [ "$1" = "--build" ]; then
+    exec cmake "$@"
+else
+    exec cmake \
+        -G Ninja \
+        -DCMAKE_SYSROOT=/opt/cross/$CROSS_COMPILE_TOOLCHAIN_PREFIX/$CROSS_COMPILE_TOOLCHAIN_PREFIX/sysroot \
+        -DCMAKE_TOOLCHAIN_FILE=/opt/cross/$CROSS_COMPILE_TOOLCHAIN_PREFIX/toolchain.cmake \
+        "$@"
+fi
